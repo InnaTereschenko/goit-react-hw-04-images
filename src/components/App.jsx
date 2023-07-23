@@ -33,7 +33,7 @@ export function App() {
     const fetchImages = async (query, page) => {
       try {
         setIsLoading(true);
-        const data = await pixabayapi.fetchImages({query, page});
+        const data = await pixabayapi.fetchImages({ query, page });
         if (data.hits <= 0) {
           toast.warning('Sorry. There are no images ... 😭');
           return;
@@ -44,43 +44,39 @@ export function App() {
         setImages(prevImages => [...prevImages, ...data.hits]);
         setTotalHits(data.totalHits);
         setIsLoadMoreBtnVisible(page < Math.ceil(data.totalHits / 12));
-
       } catch (err) {
         toast.error('Sorry, something goes wrong');
       } finally {
         setIsLoading(false);
-   
       }
     };
 
     fetchImages(query, page);
-   }, [ query, page]);
+  }, [query, page]);
 
+  return (
+    <div
+      style={{
+        display: 'grid',
+        gridTemplateColumns: '1fr',
+        gridGap: '16px',
+        paddingBottom: '24px',
+      }}
+    >
+      <Searchbar onSubmit={handleFormSubmit} />
 
-  
-    return (
-      <div
-        style={{
-          display: 'grid',
-          gridTemplateColumns: '1fr',
-          gridGap: '16px',
-          paddingBottom: '24px',
-        }}
-      >
-        <Searchbar onSubmit={handleFormSubmit} />
+      {images.length > 0 && <ImageGallery images={images}></ImageGallery>}
 
-        {images.length > 0 && <ImageGallery images={images}></ImageGallery>}
+      {isLoading && <Loader />}
 
-        {isLoading && <Loader />}
+      {isLoadMoreBtnVisible && !isLoading && (
+        <Button onClick={handleClickLoadMore} />
+      )}
 
-        {isLoadMoreBtnVisible && !isLoading && (
-          <Button onClick={handleClickLoadMore} />
-        )}
-
-        <ToastContainer autoClose={1500} position="top-center" theme="light" />
-      </div>
-    );
-  };
+      <ToastContainer autoClose={1500} position="top-center" theme="light" />
+    </div>
+  );
+}
 
 // export class App extends Component {
 //   state = {
@@ -173,4 +169,3 @@ export function App() {
 //     );
 //   }
 // }
-

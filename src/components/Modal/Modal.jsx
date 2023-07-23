@@ -7,18 +7,16 @@ export const Modal = ({ largeImageURL, tags, onClose }) => {
 
   useEffect(() => {
     //закриття модалки при кліку на escape
-  const handleKeyDown = event => {
-    if (event.code === 'Escape') {
-      onClose();
-    }
-  };
+    const handleKeyDown = event => {
+      if (event.code === 'Escape') {
+        onClose();
+      }
+    };
     window.addEventListener('keydown', handleKeyDown);
-    return (() => {
+    return () => {
       window.removeEventListener('keydown', handleKeyDown);
-    })
+    };
   }, [onClose]);
- 
-  
 
   //закриття при кліку на бекдроп
   const handleBackdropClick = event => {
