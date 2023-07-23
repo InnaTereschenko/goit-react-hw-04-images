@@ -11,7 +11,7 @@ export function App() {
   const [query, setQuery] = useState('');
   const [images, setImages] = useState([]);
   const [page, setPage] = useState(1);
-  const [totalHits, setTotalHits] = useState(0);
+  // const [totalHits, setTotalHits] = useState(0);
   const [isLoadMoreBtnVisible, setIsLoadMoreBtnVisible] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -42,7 +42,8 @@ export function App() {
           toast.info(`Found ${data.total} images`);
         }
         setImages(prevImages => [...prevImages, ...data.hits]);
-        setTotalHits(data.totalHits);
+        
+        // setTotalHits(data.totalHits);
         setIsLoadMoreBtnVisible(page < Math.ceil(data.totalHits / 12));
       } catch (err) {
         toast.error('Sorry, something goes wrong');
@@ -53,6 +54,8 @@ export function App() {
 
     fetchImages(query, page);
   }, [query, page]);
+
+  // const totalPage = totalHits / images.length;
 
   return (
     <div
@@ -69,7 +72,7 @@ export function App() {
 
       {isLoading && <Loader />}
 
-      {isLoadMoreBtnVisible && !isLoading && (
+      { isLoadMoreBtnVisible && !isLoading && images.length !== 0 && (
         <Button onClick={handleClickLoadMore} />
       )}
 
