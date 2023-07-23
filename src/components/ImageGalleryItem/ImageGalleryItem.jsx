@@ -3,7 +3,7 @@ import css from './ImageGalleryItem.module.css';
 import { Modal } from '../Modal/Modal.jsx';
 // import { ImageGallery } from 'components/ImageGallery/ImageGallery';
 
-export const ImageGalleryItem = ({webformatURL, largeImageURL, tags} ) => {
+export const ImageGalleryItem = ({ webformatURL, largeImageURL, tags }) => {
   // const [webformatURL, setWebformatURL] = useState('');
   // const [largeImageURL, setLargeImageURL] = useState('');
   // const [tags, setTags] = useState('');
@@ -11,8 +11,6 @@ export const ImageGalleryItem = ({webformatURL, largeImageURL, tags} ) => {
 
   const showModal = () => setIsShowModal(true);
   const closeModal = () => setIsShowModal(false);
-
- 
 
   return (
     <li className={css.imageGalleryItem}>
