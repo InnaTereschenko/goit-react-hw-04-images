@@ -27,5 +27,5 @@ ImageGallery.propTypes = {
       tags: PropTypes.string.isRequired,
     })
   ).isRequired,
-  // onImageClick: PropTypes.func.isRequired,
+  
 };

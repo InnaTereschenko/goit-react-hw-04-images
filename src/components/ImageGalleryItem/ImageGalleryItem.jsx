@@ -1,61 +1,65 @@
-// import SimpleLightbox from "simplelightbox";
-// import 'simplelightbox/dist/simple-lightbox.min.css';
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import css from './ImageGalleryItem.module.css';
 import { Modal } from '../Modal/Modal.jsx';
+// import { ImageGallery } from 'components/ImageGallery/ImageGallery';
 
-export class ImageGalleryItem extends Component {
-  state = {
-    webformatURL: '',
-    largeImageURL: '',
-    tags: '',
-    isShowModal: false,
-    
-  };
+export const ImageGalleryItem = ({webformatURL, largeImageURL, tags} ) => {
+  // const [webformatURL, setWebformatURL] = useState('');
+  // const [largeImageURL, setLargeImageURL] = useState('');
+  // const [tags, setTags] = useState('');
+  const [isShowModal, setIsShowModal] = useState(false);
 
+  const showModal = () => setIsShowModal(true);
+  const closeModal = () => setIsShowModal(false);
 
-
-// lightbox = null;
-
-//   componentDidMount() {
-//     this.lightbox = new SimpleLightbox('.gallery a', {
-//       captionDelay: 250,
-//       captionsData: 'alt',
-//       nav: true,
-//     });
-//   }
-
-
-
-  toggleModal = () => {
-    this.setState(({ isShowModal }) => ({ isShowModal: !isShowModal }));
-  };
-  render() {
-    const { isShowModal } = this.state;
-    const  { webformatURL, largeImageURL, tags } = this.props; 
-    return (
-      <li className={css.imageGalleryItem}>
-
-
-{/* <a href={largeImageURL}>
-          <img src={webformatURL} alt={tags} onClick={this.toggleModal} />
-        </a> */}
-
-
-        <img 
-          src={webformatURL}
-          alt={tags}
-          onClick={this.toggleModal}
  
-        />
-        {isShowModal && (
-          <Modal
-            largeImageURL={largeImageURL}
-            tags={tags}
-            onClose={this.toggleModal}
-          />         
-        )}
-      </li>
-    );
-  }
-}
+
+  return (
+    <li className={css.imageGalleryItem}>
+      <img src={webformatURL} alt={tags} onClick={showModal} />
+      {isShowModal && (
+        <Modal largeImageURL={largeImageURL} tags={tags} onClose={closeModal} />
+      )}
+    </li>
+  );
+};
+
+// export class ImageGalleryItem extends Component {
+//   state = {
+//     webformatURL: '',
+//     largeImageURL: '',
+//     tags: '',
+//     isShowModal: false,
+
+//   };
+
+//   toggleModal = () => {
+//     this.setState(({ isShowModal }) => ({ isShowModal: !isShowModal }));
+//   };
+//   render() {
+//     const { isShowModal } = this.state;
+//     const  { webformatURL, largeImageURL, tags } = this.props;
+//     return (
+//       <li className={css.imageGalleryItem}>
+
+// {/* <a href={largeImageURL}>
+//           <img src={webformatURL} alt={tags} onClick={this.toggleModal} />
+//         </a> */}
+
+//         <img
+//           src={webformatURL}
+//           alt={tags}
+//           onClick={this.toggleModal}
+
+//         />
+//         {isShowModal && (
+//           <Modal
+//             largeImageURL={largeImageURL}
+//             tags={tags}
+//             onClose={this.toggleModal}
+//           />
+//         )}
+//       </li>
+//     );
+//   }
+// }
