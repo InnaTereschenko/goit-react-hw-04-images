@@ -86,9 +86,7 @@ export function App() {
 //     totalHits: 0,
 //     isLoadMoreBtnVisible: false,
 //     isLoading: false,
-
 //   };
-
 // async componentDidUpdate(prevProps, prevState) {
 //   const { query, page } = this.state;
 //   // перевірка на пусту строку та введення нового запиту, а також що поточна сторінка змінилась
@@ -151,7 +149,6 @@ export function App() {
 //           paddingBottom: '24px',
 //         }}
 //       >
-
 //         <Searchbar onSubmit={this.handleFormSubmit} />
 
 //         {this.state.images.length > 0 && (
